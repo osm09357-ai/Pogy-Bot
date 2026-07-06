@@ -1,40 +1,40 @@
-const fs = require("fs");
-const path = require("path");
-const { spawn } = require("child_process");
-
-const mode = process.argv[2] === "dev" ? "dev" : "start";
-const rootDir = path.resolve(__dirname, "..");
-const dashboardDir = path.join(rootDir, "dashboard");
-const dashboardBuildId = path.join(dashboardDir, "dist", "index.html");
-const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
-
-const children = [];
-
-function loadEnvFile(filePath) {
-  if (!fs.existsSync(filePath)) return;
-
-  const lines = fs.readFileSync(filePath, "utf8").split(/\r?\n/);
-
-  for (const line of lines) {
-    const trimmed = line.trim();
-
-    if (!trimmed || trimmed.startsWith("#")) {
-      continue;
-    }
-
-    const separatorIndex = trimmed.indexOf("=");
-    if (separatorIndex === -1) {
-      continue;
-    }
-
-    const key = trimmed.slice(0, separatorIndex).trim();
-    let value = trimmed.slice(separatorIndex + 1).trim();
-
-    if (!key || Object.prototype.hasOwnProperty.call(process.env, key)) {
-      continue;
-    }
-
-    if (
+pogyclient@2.0.1 start
+> node scripts/run-services.js start
+[runner] Starting bot and dashboard in production mode...
+npm warn config production Use `--omit=dev` instead.
+npm warn config production Use `--omit=dev` instead.
+> pogyclient@2.0.1 start:dashboard
+> npm --prefix dashboard run start
+> pogyclient@2.0.1 start:bot
+> node index.js
+> node server.js
+[07.07.2026 / 01:06 AM]: SHARD Cluster 0 launched
+[07.07.2026 / 01:06 AM]: SHARD Status server listening on 0.0.0.0:8080
+[dashboard] Port 8080 is already in use, so Zenith cannot start.
+[dashboard] Find it: Get-NetTCPConnection -LocalPort 8080 | Select-Object OwningProcess
+[dashboard] Stop it: Stop-Process -Id <PID> -Force
+[runner] dashboard exited with code 1
+npm warn config production Use `--omit=dev` instead.
+> zenith-dashboard@0.0.0 start
+npm warn config production Use `--omit=dev` instead.
+> pogyclient@2.0.1 start
+> node scripts/run-services.js start
+[runner] Starting bot and dashboard in production mode...
+[dashboard] Find it: Get-NetTCPConnection -LocalPort 8080 | Select-Object OwningProcess
+[dashboard] Stop it: Stop-Process -Id <PID> -Force
+npm warn config production Use `--omit=dev` instead.
+npm warn config production Use `--omit=dev` instead.
+npm warn config production Use `--omit=dev` instead.
+> pogyclient@2.0.1 start:bot
+> node server.js
+> zenith-dashboard@0.0.0 start
+[07.07.2026 / 01:06 AM]: SHARD Status server listening on 0.0.0.0:8080
+[07.07.2026 / 01:06 AM]: SHARD Cluster 0 launched
+[dashboard] Port 8080 is already in use, so Zenith cannot start.
+> node index.js
+> pogyclient@2.0.1 start:dashboard
+> npm --prefix dashboard run start
+[    if (
       (value.startsWith('"') && value.endsWith('"')) ||
       (value.startsWith("'") && value.endsWith("'"))
     ) {
